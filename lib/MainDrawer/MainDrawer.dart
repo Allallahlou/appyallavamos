@@ -56,28 +56,78 @@ class MainDrawer extends StatelessWidget {
             ),
 
             // القائمة
-            _buildItem(context, Icons.stadium, "الملاعب",  StadiumsStandalonePage() ),
-            _buildItem(context, Icons.directions_bus, "وسائل النقل", const TransportPage()),
-            _buildItem(context, Icons.history_edu, "المعالم التاريخية", const HeritagePage()),
-            _buildItem(context, Icons.calendar_month, "توقيت المباريات", const SchedulePage()),
+            _buildItem(
+              context,
+              Icons.stadium,
+              "برنامج المباريات ",
+              ScheduleOnlyPage(),
+            ),
+            _buildItem(
+              context,
+              Icons.directions_bus,
+              "وسائل النقل",
+              const TransportPage(),
+            ),
+            _buildItem(
+              context,
+              Icons.history_edu,
+              "المعالم التاريخية",
+              const HeritagePage(),
+            ),
+            _buildItem(
+              context,
+              Icons.calendar_month,
+              "توقيت المباريات",
+              const SchedulePage(),
+            ),
 
             const Divider(color: Colors.white24),
 
-            _buildItem(context, Icons.location_city, "المدن الكبرى", const CitiesPage()),
-            _buildItem(context, Icons.music_note, "  الفرق المعروفة في المغرب", const ChantsPage()),
+            _buildItem(
+              context,
+              Icons.location_city,
+              "المدن الكبرى",
+              const CitiesPage(),
+            ),
+            _buildItem(
+              context,
+              Icons.music_note,
+              "  الفرق المعروفة في المغرب",
+              const ChantsPage(),
+            ),
 
             const Divider(color: Colors.white24),
 
-            _buildItem(context, Icons.flag, "فريقك المفضل", const FavTeamPage()),
-            _buildItem(context, Icons.psychology, "توقع النتيجة", const PredictionPage()),
-            _buildItem(context, Icons.restaurant, "أحسن الوجبات في المغرب", const FoodPage()),
+            _buildItem(
+              context,
+              Icons.flag,
+              "فريقك المفضل",
+              const FavTeamPage(),
+            ),
+            _buildItem(
+              context,
+              Icons.psychology,
+              "توقع النتيجة",
+              const PredictionPage(),
+            ),
+            _buildItem(
+              context,
+              Icons.restaurant,
+              "أحسن الوجبات في المغرب",
+              const FoodPage(),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildItem(BuildContext context, IconData icon, String title, Widget page) {
+  Widget _buildItem(
+    BuildContext context,
+    IconData icon,
+    String title,
+    Widget page,
+  ) {
     return ListTile(
       leading: Icon(icon, color: Colors.white),
       title: Text(
@@ -86,12 +136,8 @@ class MainDrawer extends StatelessWidget {
       ),
       onTap: () {
         Navigator.pop(context); // إغلاق الـ Drawer
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => page),
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (_) => page));
       },
     );
   }
 }
-

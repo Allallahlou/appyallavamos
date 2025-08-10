@@ -1,12 +1,11 @@
-// stadiums_page_modern.dart
-import 'package:appyallavamos/MainDrawer/MainDrawer.dart';
-import 'package:appyallavamos/StadiumSchedulePage/StadiumSchedulePage.dart';
 import 'package:flutter/material.dart';
 
-class StadiumsPage extends StatelessWidget {
-  const StadiumsPage({Key? key}) : super(key: key);
+class StadiumSchedulePage extends StatelessWidget {
+  final String stadiumName;
+  const StadiumSchedulePage({Key? key, required this.stadiumName})
+    : super(key: key);
 
-  // ---------------- البيانات ----------------
+  // نفس جدول المباريات
   final List<Map<String, dynamic>> stadiums = const [
     {
       "name": "ملعب محمد الخامس",
@@ -308,206 +307,32 @@ class StadiumsPage extends StatelessWidget {
     },
   ];
 
-  // ---------------- BottomSheet التوقيت ----------------
-  void _showMatchesForStadium(BuildContext context, String stadiumName) {
-    final filtered = allMatches
+  @override
+  Widget build(BuildContext context) {
+    final matches = allMatches
         .where((m) => m["stadium"].toString().contains(stadiumName))
         .toList();
 
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      builder: (_) => Container(
-        margin: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(.08),
-          borderRadius: BorderRadius.circular(28),
-          border: Border.all(color: Colors.white12, width: .5),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 14),
-            Text(
-              "مباريات $stadiumName",
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 8),
-            if (filtered.isEmpty)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 30),
-                child: Text(
-                  "لا توجد مباريات",
-                  style: TextStyle(color: Colors.white70),
-                ),
-              )
-            else
-              Flexible(
-                child: ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 20),
-                  shrinkWrap: true,
-                  itemCount: filtered.length,
-                  separatorBuilder: (_, __) =>
-                      const Divider(color: Colors.white12, height: 1),
-                  itemBuilder: (_, i) {
-                    final m = filtered[i];
-                    return ListTile(
-                      dense: true,
-                      leading: const Icon(
-                        Icons.access_time,
-                        color: Color(0xff00e676),
-                      ),
-                      title: Text(
-                        "${m["team1"]}  ضد  ${m["team2"]}",
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      subtitle: Text(
-                        "${m["date"]}  |  ${m["time"]}",
-                        style: const TextStyle(color: Colors.white70),
-                      ),
-                    );
-                  },
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // ---------------- build ----------------
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text(
-          "🏆 ملاعب كأس إفريقيا 2025",
-          style: TextStyle(fontWeight: FontWeight.w800),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      drawer: const MainDrawer(),
-      body: ListView.builder(
-        // ✅ استخدمه مباشرة
-        padding: const EdgeInsets.only(top: kToolbarHeight + 20),
-        itemCount: stadiums.length,
-        itemBuilder: (context, i) {
-          final s = stadiums[i];
-          return Container(
-            margin: const EdgeInsets.fromLTRB(20, 0, 20, 24),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.08),
-              borderRadius: BorderRadius.circular(28),
-              border: Border.all(color: Colors.white12, width: .5),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(.25),
-                  blurRadius: 12,
-                  offset: const Offset(0, 8),
-                ),
-              ],
+      appBar: AppBar(title: Text("مباريات $stadiumName"), centerTitle: true),
+      body: matches.isEmpty
+          ? const Center(child: Text("لا توجد مباريات"))
+          : ListView.separated(
+              padding: const EdgeInsets.all(20),
+              itemCount: matches.length,
+              separatorBuilder: (_, __) => const Divider(height: 1),
+              itemBuilder: (_, i) {
+                final m = matches[i];
+                return ListTile(
+                  leading: const Icon(
+                    Icons.access_time,
+                    color: Color(0xff00e676),
+                  ),
+                  title: Text("${m["team1"]}  ضد  ${m["team2"]}"),
+                  subtitle: Text("${m["date"]}  |  ${m["time"]}"),
+                );
+              },
             ),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(28),
-                  ),
-                  child: Image.asset(
-                    s["image"],
-                    height: 180,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                      height: 180,
-                      color: Colors.grey[800],
-                      alignment: Alignment.center,
-                      child: const Icon(
-                        Icons.stadium,
-                        size: 60,
-                        color: Colors.white30,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              s["name"],
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              "${s["city"]} • ${s["capacity"]} متفرج",
-                              style: const TextStyle(
-                                color: Colors.white70,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      // داخل build(...) في StadiumsPage
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) =>
-                                  StadiumSchedulePage(stadiumName: s["name"]),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xff00e676),
-                            borderRadius: BorderRadius.circular(50),
-                            boxShadow: [
-                              BoxShadow(
-                                color: const Color(0xff00e676).withOpacity(.4),
-                                blurRadius: 8,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Text(
-                            "التوقيت",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
     );
   }
 }
