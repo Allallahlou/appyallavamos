@@ -1,5 +1,6 @@
 // heritage_page.dart
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HeritagePage extends StatelessWidget {
   const HeritagePage({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class HeritagePage extends StatelessWidget {
       "image": "images/fes_bali.png",
       "desc": "أقدم مدينة إسلامية حية، مدرجة منذ 1981.",
       "icon": Icons.castle,
+      "map": "https://maps.apple.com/?q=Fes+Bali+Morocco",
     },
     {
       "name": "جامع الفنا",
@@ -18,6 +20,7 @@ class HeritagePage extends StatelessWidget {
       "image": "images/jemaa_fna.png",
       "desc": "ساحة الشعب والفنون الشعبية، تراث إنساني.",
       "icon": Icons.groups,
+      "map": "https://maps.apple.com/?q=Jemaa+El+Fna+Marrakech",
     },
     {
       "name": "قصبة الأوداية",
@@ -25,6 +28,7 @@ class HeritagePage extends StatelessWidget {
       "image": "images/oudaya.png",
       "desc": "حصن أندلسي يطل على نهر أبي رقراق.",
       "icon": Icons.fort,
+      "map": "https://maps.apple.com/?q=Kasbah+Oudaya+Rabat",
     },
     {
       "name": "كهوف هيرقليون",
@@ -32,6 +36,7 @@ class HeritagePage extends StatelessWidget {
       "image": "images/hercules.png",
       "desc": "كهوف أسطورية تفتح على المحيط الأطلسي.",
       "icon": Icons.waves,
+      "map": "https://maps.apple.com/?q=Hercules+Caves+Tangier",
     },
     {
       "name": "قلعة أكادير",
@@ -39,6 +44,7 @@ class HeritagePage extends StatelessWidget {
       "image": "images/agadir_kasbah.png",
       "desc": "قلعة تاريخية تشرف على مدينة أكادير.",
       "icon": Icons.temple_buddhist,
+      "map": "https://maps.apple.com/?q=Agadir+Kasbah",
     },
     {
       "name": "مسجد الحسن الثاني",
@@ -46,8 +52,16 @@ class HeritagePage extends StatelessWidget {
       "image": "images/hassan2.png",
       "desc": "ثالث أكبر مسجد في العالم، معلمة عالمية.",
       "icon": Icons.mosque,
+      "map": "https://maps.apple.com/?q=Hassan+II+Mosque+Casablanca",
     },
   ];
+
+  Future<void> _openMap(String url) async {
+    final uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +118,17 @@ class HeritagePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 6),
                       Text(s["desc"], style: const TextStyle(fontSize: 13)),
+                      const SizedBox(height: 8),
+                      Align(
+                        alignment: AlignmentDirectional.centerEnd,
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.map_outlined,
+                            color: Colors.green,
+                          ),
+                          onPressed: () => _openMap(s["map"]),
+                        ),
+                      ),
                     ],
                   ),
                 ),

@@ -4,7 +4,7 @@ import 'package:appyallavamos/StadiumSchedulePage/StadiumSchedulePage.dart';
 import 'package:flutter/material.dart';
 
 class StadiumsPage extends StatelessWidget {
-  const StadiumsPage({Key? key}) : super(key: key);
+  const StadiumsPage({super.key});
 
   // ---------------- البيانات ----------------
   final List<Map<String, dynamic>> stadiums = const [

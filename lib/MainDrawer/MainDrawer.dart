@@ -4,6 +4,7 @@ import 'package:appyallavamos/CitiesPage/CitiesPage.dart';
 import 'package:appyallavamos/FavTeamPage/FavTeamPage.dart';
 import 'package:appyallavamos/FoodPage/FoodPage.dart';
 import 'package:appyallavamos/HeritagePage/HeritagePage.dart';
+import 'package:appyallavamos/HotelsDiscoveryPage/HotelsDiscoveryPage.dart';
 import 'package:appyallavamos/PredictionPage/PredictionPage.dart';
 import 'package:appyallavamos/SchedulePage/SchedulePage.dart';
 import 'package:appyallavamos/StadiumsStandalonePage/StadiumsStandalonePage.dart';
@@ -31,7 +32,7 @@ class MainDrawer extends StatelessWidget {
             DrawerHeader(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('images/drawer_header.png'),
+                  image: AssetImage('images/app_icon.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -115,6 +116,12 @@ class MainDrawer extends StatelessWidget {
               Icons.restaurant,
               "أحسن الوجبات في المغرب",
               const FoodPage(),
+            ),
+            _buildItem(
+              context,
+              Icons.hotel_outlined,
+              "الفناضق",
+              const HotelsDiscoveryPage(),
             ),
           ],
         ),
