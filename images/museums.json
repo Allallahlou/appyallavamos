@@ -1,0 +1,282 @@
+[
+    {
+        "id": "oudaya",
+        "name": "Museum of Oudayas",
+        "city": "Rabat",
+        "foundedYear": 1915,
+        "topic": "Jewellery & Ethnography",
+        "supervisor": "National Museums Foundation",
+        "isPublic": true,
+        "image": "images/oudaya.png"
+    },
+    {
+        "id": "history_civilizations",
+        "name": "Museum of History & Civilizations",
+        "city": "Rabat",
+        "foundedYear": 1931,
+        "topic": "Archaeology",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/history_civilizations.png"
+    },
+    {
+        "id": "mohammed_v_tomb",
+        "name": "Mohammed V Mausoleum Museum",
+        "city": "Rabat",
+        "foundedYear": 2005,
+        "topic": "Moroccan History",
+        "supervisor": "Military History Commission",
+        "isPublic": true,
+        "image": "images/mohammed_v_tomb.png"
+    },
+    {
+        "id": "mohammed_vi_modern",
+        "name": "Mohammed VI Museum of Modern & Contemporary Art",
+        "city": "Rabat",
+        "foundedYear": 2014,
+        "topic": "Modern & Contemporary Art",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/mohammed_vi_modern.png"
+    },
+    {
+        "id": "postal_museum",
+        "name": "Moroccan Postal Museum",
+        "city": "Rabat",
+        "foundedYear": 1970,
+        "topic": "Philately",
+        "supervisor": "Poste Maroc",
+        "isPublic": true,
+        "image": "images/postal_museum.png"
+    },
+    {
+        "id": "bank_al_maghrib_museum",
+        "name": "Bank Al-Maghrib Museum",
+        "city": "Rabat",
+        "foundedYear": 2002,
+        "topic": "Numismatics",
+        "supervisor": "Bank Al-Maghrib",
+        "isPublic": true,
+        "image": "images/bank_al_maghrib_museum.png"
+    },
+    {
+        "id": "abderrahmane_sloui",
+        "name": "Abderrahmane Slaoui Museum",
+        "city": "Casablanca",
+        "foundedYear": 2012,
+        "topic": "Various Fine Arts",
+        "supervisor": "Abderrahmane Slaoui Foundation",
+        "isPublic": false,
+        "image": "images/abderrahmane_sloui.png"
+    },
+    {
+        "id": "hassan_ii_mosque",
+        "name": "Hassan II Mosque Museum",
+        "city": "Casablanca",
+        "foundedYear": 1993,
+        "topic": "History of the Mosque",
+        "supervisor": "Hassan II Mosque Foundation",
+        "isPublic": true,
+        "image": "images/hassan_ii_mosque.png"
+    },
+    {
+        "id": "jewish_museum",
+        "name": "Moroccan Jewish Museum",
+        "city": "Casablanca",
+        "foundedYear": 1997,
+        "topic": "Jewish Heritage",
+        "supervisor": "Moroccan Jewish Heritage Foundation",
+        "isPublic": false,
+        "image": "images/jewish_museum.png"
+    },
+    {
+        "id": "meteorite_university",
+        "name": "University Meteorite Museum",
+        "city": "Agadir",
+        "foundedYear": 2016,
+        "topic": "Meteorites & Space Sciences",
+        "supervisor": "Ibn Zohr University",
+        "isPublic": true,
+        "image": "images/meteorite_university.png"
+    },
+    {
+        "id": "amazigh_heritage",
+        "name": "Amazigh Heritage Museum",
+        "city": "Agadir",
+        "foundedYear": 2000,
+        "topic": "Local Amazigh Culture",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/amazigh_heritage.png"
+    },
+    {
+        "id": "dar_si_said",
+        "name": "Dar Si Said Museum",
+        "city": "Marrakech",
+        "foundedYear": 1932,
+        "topic": "Ethnography & Crafts",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/dar_si_said.png"
+    },
+    {
+        "id": "marrakech_museum",
+        "name": "Marrakech Museum",
+        "city": "Marrakech",
+        "foundedYear": 1996,
+        "topic": "Ethnography & Modern Art",
+        "supervisor": "Omar Benjelloun Foundation",
+        "isPublic": false,
+        "image": "images/marrakech_museum.png"
+    },
+    {
+        "id": "tiskiwin",
+        "name": "Tiskiwin Museum",
+        "city": "Marrakech",
+        "foundedYear": 1996,
+        "topic": "Ethnography – Saharan Routes",
+        "supervisor": "Bert Flint Foundation",
+        "isPublic": false,
+        "image": "images/tiskiwin.png"
+    },
+    {
+        "id": "yves_saint_laurent",
+        "name": "Yves Saint Laurent Museum Marrakech",
+        "city": "Marrakech",
+        "foundedYear": 2017,
+        "topic": "Fashion & Modern Art",
+        "supervisor": "Pierre Bergé–YSL Foundation",
+        "isPublic": false,
+        "image": "images/yves_saint_laurent.png"
+    },
+    {
+        "id": "sidi_mohamed_ben_abdallah",
+        "name": "Sidi Mohammed Ben Abdallah Museum",
+        "city": "Essaouira",
+        "foundedYear": 1980,
+        "topic": "Regional History & Culture",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/sidi_mohamed_ben_abdallah.png"
+    },
+    {
+        "id": "dar_makhzen_tangier",
+        "name": "Dar El-Makhzen (Tangier)",
+        "city": "Tangier",
+        "foundedYear": null,
+        "topic": "Archeology & Moroccan Arts",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/dar_makhzen_tangier.png"
+    },
+    {
+        "id": "contemporary_art_tangier",
+        "name": "Contemporary Art Gallery (Tangier)",
+        "city": "Tangier",
+        "foundedYear": 2007,
+        "topic": "Moroccan Plastic Arts",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/contemporary_art_tangier.png"
+    },
+    {
+        "id": "villa_harris",
+        "name": "Villa Harris Museum",
+        "city": "Tangier",
+        "foundedYear": 2021,
+        "topic": "Modern & Contemporary Art",
+        "supervisor": "Mohammed VI Museum Foundation",
+        "isPublic": true,
+        "image": "images/villa_harris.png"
+    },
+    {
+        "id": "dar_jamai",
+        "name": "Dar Jamai Palace Museum",
+        "city": "Meknes",
+        "foundedYear": 1920,
+        "topic": "Regional Arts & Crafts",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/dar_jamai.png"
+    },
+    {
+        "id": "borj_nord",
+        "name": "Borj Nord Arms Museum",
+        "city": "Fez",
+        "foundedYear": 1963,
+        "topic": "Military History",
+        "supervisor": "Military History Commission",
+        "isPublic": true,
+        "image": "images/borj_nord.png"
+    },
+    {
+        "id": "batha",
+        "name": "Batha Museum",
+        "city": "Fez",
+        "foundedYear": 1915,
+        "topic": "Ethnography & Arts",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/batha.png"
+    },
+    {
+        "id": "dar_belghazi",
+        "name": "Dar Belghazi Museum",
+        "city": "Fez",
+        "foundedYear": 1996,
+        "topic": "Ethnography & Manuscripts",
+        "supervisor": "Belghazi Foundation",
+        "isPublic": false,
+        "image": "images/dar_belghazi.png"
+    },
+    {
+        "id": "archeological_tetouan",
+        "name": "Tetouan Archaeological Museum",
+        "city": "Tetouan",
+        "foundedYear": 1939,
+        "topic": "Archeology",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/archeological_tetouan.png"
+    },
+    {
+        "id": "modern_art_tetouan",
+        "name": "Tetouan Modern Art Center",
+        "city": "Tetouan",
+        "foundedYear": 2013,
+        "topic": "Plastic Arts",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/modern_art_tetouan.png"
+    },
+    {
+        "id": "chefchaouen_ethnographic",
+        "name": "Chefchaouen Ethnographic Museum",
+        "city": "Chefchaouen",
+        "foundedYear": 1985,
+        "topic": "Regional Ethnography",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/chefchaouen_ethnographic.png"
+    },
+    {
+        "id": "national_ceramics",
+        "name": "National Ceramics Museum",
+        "city": "Safi",
+        "foundedYear": 1990,
+        "topic": "Pottery & Ceramics",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/national_ceramics.png"
+    },
+    {
+        "id": "saharan_arts",
+        "name": "Museum of Saharan Arts (Laayoune)",
+        "city": "Laayoune",
+        "foundedYear": 2000,
+        "topic": "Saharan Culture & Arts",
+        "supervisor": "Ministry of Culture",
+        "isPublic": true,
+        "image": "images/saharan_arts.png"
+    }
+]

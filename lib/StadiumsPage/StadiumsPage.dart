@@ -1,4 +1,3 @@
-// stadiums_page_modern.dart
 import 'package:appyallavamos/MainDrawer/MainDrawer.dart';
 import 'package:appyallavamos/StadiumSchedulePage/StadiumSchedulePage.dart';
 import 'package:flutter/material.dart';
