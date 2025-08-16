@@ -11,12 +11,64 @@ class FavTeamPage extends StatefulWidget {
 class _FavTeamPageState extends State<FavTeamPage> {
   // قائمة الفرق المغربية
   final List<Map<String, dynamic>> teams = const [
-    {"name": "الوداد البيضاوي", "logo": "images/wydad.png", "color": Colors.red},
-    {"name": "الرجاء البيضاوي", "logo": "images/raja.png", "color": Color(0xff006633)},
-    {"name": "الجيش الملكي", "logo": "images/armee.png", "color": Color.fromARGB(255, 0, 0, 0)},
-    {"name": "المغرب الفاسي", "logo": "images/mas.png", "color": Color.fromARGB(255, 247, 242, 0)},
-    {"name": "حسنية أكادير", "logo": "images/husa.png", "color": Color.fromARGB(255, 255, 0, 0)},
-    {"name": "الدفاع الحسني الجديدي", "logo": "images/dhj.png", "color": Color.fromARGB(255, 92, 238, 8)},
+    {
+      "name": "الوداد البيضاوي",
+      "logo": "images/wydad.png",
+      "color": Colors.red,
+      "titles": {
+        "Botola": 22,
+        "Coupe du Trône": 9,
+        "Ligue des champions CAF": 3,
+        "Super Coupe de la CAF": 2,
+      },
+      "description":
+          "الوداد البيضاوي، نادي العاصمة الاقتصادية، من أكثر الأندية تتويجاً في المغرب وقارياً، يُلقب بـ'الأحمر'.",
+    },
+    {
+      "name": "الرجاء البيضاوي",
+      "logo": "images/raja.png",
+      "color": Color(0xff006633),
+      "titles": {
+        "Botola": 13,
+        "Coupe du Trône": 8,
+        "Ligue des champions CAF": 3,
+        "Super Coupe de la CAF": 1,
+      },
+      "description":
+          "الرجاء البيضاوي، النادي الشعبي للدار البيضاء، معجبيه يُعرفون بـ'الخضر'، يمتلك قاعدة جماهيرية كبيرة داخل وخارج المغرب.",
+    },
+    {
+      "name": "الجيش الملكي",
+      "logo": "images/armee.png",
+      "color": Color.fromARGB(255, 0, 0, 0),
+      "titles": {"Botola": 13, "Coupe du Trône": 12},
+      "description":
+          "الجيش الملكي، ممثل القوات المسلحة الملكية، لقبه 'العساكر'، يجمع بين الرياضة والانضباط العسكري.",
+    },
+    {
+      "name": "المغرب الفاسي",
+      "logo": "images/mas.png",
+      "color": Color.fromARGB(255, 247, 242, 0),
+      "titles": {"Botola": 4, "Coupe du Trône": 8, "Confederation Cup CAF": 1},
+      "description":
+          "المغرب الفاسي، نادي مدينة العلم، يُلقب بـ'النوارس'، من أعرق الأندية في المغرب وله تاريخ طويل في البطولات.",
+    },
+    {
+      "name": "حسنية أكادير",
+      "logo": "images/husa.png",
+      "color": Color.fromARGB(255, 255, 0, 0),
+      "titles": {"Botola": 2, "Coupe du Trône": 3},
+      "description":
+          "حسنية أكادير، فريق المدينة السياحية، يُعرف بـ'السوسيون'، متخصص في إنتاج المواهب الصاعدة.",
+    },
+    {
+      "name": "الدفاع الحسني الجديدي",
+      "logo": "images/dhj.png",
+      "color": Color.fromARGB(255, 92, 238, 8),
+      "titles": {"Botola": 1, "Coupe du Trône": 2},
+      "description":
+          "الدفاع الحسني الجديدي، ممثل مدينة الجديدة، يُلقب بـ'الزعيم'، عرف بأدائه القوي في البطولات الوطنية.",
+    },
   ];
 
   String? _selectedTeam;
@@ -64,7 +116,9 @@ class _FavTeamPageState extends State<FavTeamPage> {
                         color: isSelected ? team["color"] : Colors.white,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: isSelected ? team["color"] : Colors.grey.shade300,
+                          color: isSelected
+                              ? team["color"]
+                              : Colors.grey.shade300,
                           width: 2,
                         ),
                         boxShadow: [
@@ -84,8 +138,11 @@ class _FavTeamPageState extends State<FavTeamPage> {
                             team["logo"],
                             width: 60,
                             height: 60,
-                            errorBuilder: (_, __, ___) =>
-                                Icon(Icons.shield, size: 60, color: team["color"]),
+                            errorBuilder: (_, __, ___) => Icon(
+                              Icons.shield,
+                              size: 60,
+                              color: team["color"],
+                            ),
                           ),
                           const SizedBox(height: 8),
                           Text(
@@ -98,7 +155,11 @@ class _FavTeamPageState extends State<FavTeamPage> {
                             ),
                           ),
                           if (isSelected)
-                            const Icon(Icons.check_circle, color: Colors.white, size: 24),
+                            const Icon(
+                              Icons.check_circle,
+                              color: Colors.white,
+                              size: 24,
+                            ),
                         ],
                       ),
                     ),
@@ -112,7 +173,9 @@ class _FavTeamPageState extends State<FavTeamPage> {
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text("✅ تم اختيار $_selectedTeam كفريقك المفضل!"),
+                        content: Text(
+                          "✅ تم اختيار $_selectedTeam كفريقك المفضل!",
+                        ),
                       ),
                     );
                     // يمكنك حفظ القيمة في SharedPreferences أو GetStorage
@@ -122,7 +185,10 @@ class _FavTeamPageState extends State<FavTeamPage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff006633),
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32,
+                      vertical: 12,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),

@@ -93,9 +93,9 @@ class MainDrawer extends StatelessWidget {
             ),
             _buildItem(
               context,
-              Icons.music_note,
-              "  الفرق المعروفة في المغرب",
-              const ChantsPage(),
+              Icons.terrain,
+              "  الأندية المغربية ",
+              const TeamsTitlesPage(),
             ),
 
             const Divider(color: Colors.white24),

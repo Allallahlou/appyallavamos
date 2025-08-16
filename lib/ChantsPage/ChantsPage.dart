@@ -1,169 +1,210 @@
-// chants_page.dart – كامل + مصحح + متعدد الأغاني
+// teams_titles_page.dart
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
 
-class ChantsPage extends StatefulWidget {
-  const ChantsPage({Key? key}) : super(key: key);
+class TeamsTitlesPage extends StatelessWidget {
+  const TeamsTitlesPage({Key? key}) : super(key: key);
 
-  @override
-  State<ChantsPage> createState() => _ChantsPageState();
-}
-
-class _ChantsPageState extends State<ChantsPage> {
-  final AudioPlayer _player = AudioPlayer();
-  bool _isPlaying = false;
-  String? _currentPath; // لمعرفة أي أغنية شغالة حالياً
-
-  final List<Map<String, dynamic>> chants = const [
+  final List<Map<String, dynamic>> teams = const [
     {
-      "team": "الوداد البيضاوي",
-      "chant": "أولمبيك ودادية… ودادية!",
-      "color": Colors.red,
+      "name": "الوداد البيضاوي",
       "logo": "images/wydad_logo.png",
-      "audio": "audios/wydad_chant.mp3",
+      "color": Color(0xFFD32F2F),
+      "nickName": "الأحمر",
+      "founded": 1937,
+      "city": "الدار البيضاء",
+      "stadium": "المركب الرياضي محمد الخامس",
+      "capacity": 67000,
+      "titles": {
+        "البطولة": 22,
+        "كأس العرش": 9,
+        "عصبة الأبطال": 3,
+        "السوبر الإفريقي": 2,
+        "كأس الكؤوس الإفريقية": 1,
+        "كأس محمد السادس": 1,
+      },
     },
     {
-      "team": "الرجاء البيضاوي",
-      "chant": "الرجاء نادي الملك…",
-      "color": Color(0xff006633),
+      "name": "الرجاء البيضاوي",
       "logo": "images/raja_logo.png",
-      "audio": "audios/raja_chant.mp3",
+      "color": Color(0xFF006633),
+      "nickName": "الخضر",
+      "founded": 1949,
+      "city": "الدار البيضاء",
+      "stadium": "المركب الرياضي محمد الخامس",
+      "capacity": 67000,
+      "titles": {
+        "البطولة": 13,
+        "كأس العرش": 8,
+        "عصبة الأبطال": 3,
+        "السوبر الإفريقي": 1,
+        "كأس الكؤوس الإفريقية": 2,
+      },
     },
     {
-      "team": "الجيش الملكي",
-      "chant": "الجيش الجيش…",
-      "color": Colors.black,
+      "name": "الجيش الملكي",
       "logo": "images/armee_logo.png",
-      "audio": "audios/armee_chant.mp3",
+      "color": Colors.black,
+      "nickName": "العساكر",
+      "founded": 1958,
+      "city": "الرباط",
+      "stadium": "المركب الرياضي الأمير مولاي عبد الله",
+      "capacity": 53000,
+      "titles": {"البطولة": 13, "كأس العرش": 12, "الكونفدرالية": 1},
     },
     {
-      "team": "المغرب الفاسي",
-      "chant": "الأولمبيك سلامية…",
-      "color": Colors.yellow,
+      "name": "المغرب الفاسي",
       "logo": "images/mas_logo.png",
-      "audio": "audios/mas_chant.mp3",
+      "color": Color(0xFFFBC02D),
+      "nickName": "النوارس",
+      "founded": 1946,
+      "city": "فاس",
+      "stadium": "المركب الرياضي فاس",
+      "capacity": 45000,
+      "titles": {
+        "البطولة": 4,
+        "كأس العرش": 8,
+        "الكونفدرالية": 1,
+        "السوبر الإفريقي": 1,
+      },
     },
     {
-      "team": "حسنية أكادير",
-      "chant": "زعيم الجنوب…",
-      "color": Colors.redAccent,
+      "name": "حسنية أكادير",
       "logo": "images/husa_logo.png",
-      "audio": "audios/husa_chant.mp3",
+      "color": Color(0xFFE53935),
+      "nickName": "السوسيون",
+      "founded": 1943,
+      "city": "أكادير",
+      "stadium": "المركب الرياضي أكادير",
+      "capacity": 45000,
+      "titles": {"البطولة": 2, "كأس العرش": 3, "الكونفدرالية": 1},
+    },
+    {
+      "name": "الدفاع الحسني الجديدي",
+      "logo": "images/dhj.png",
+      "color": Color(0xFF4CAF50),
+      "nickName": "الزعيم",
+      "founded": 1957,
+      "city": "الجديدة",
+      "stadium": "المركب الرياضي الجديدة",
+      "capacity": 15000,
+      "titles": {"البطولة": 1, "كأس العرش": 2, "السوبر الإفريقي": 1},
     },
   ];
-
-  Future<void> _playChant(String path) async {
-    try {
-      await _player.stop();
-      await _player.play(AssetSource(path));
-      setState(() {
-        _isPlaying = true;
-        _currentPath = path;
-      });
-    } catch (e, stack) {
-      debugPrint("❌ خطأ في تشغيل الصوت: $e");
-      debugPrint("🔍 Stack: $stack");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("لم يتم العثور على: $path")),
-      );
-    }
-  }
-
-  Future<void> _stop() async {
-    await _player.stop();
-    setState(() {
-      _isPlaying = false;
-      _currentPath = null;
-    });
-  }
-
-  @override
-  void dispose() {
-    _player.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("🔊 الفرق المغربية المعروفة"),
+        title: const Text("🏆 الأندية المغربية "),
         centerTitle: true,
         backgroundColor: const Color(0xff006633),
       ),
-      body: Column(
-        children: [
-          // زر إيقاف يظهر فقط أثناء التشغيل
-          if (_isPlaying)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton.icon(
-                icon: const Icon(Icons.stop),
-                label: const Text("إيقاف"),
-                onPressed: _stop,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
-                ),
-              ),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemCount: teams.length,
+        itemBuilder: (_, i) {
+          final t = teams[i];
+          final totalTitles = (t["titles"] as Map<String, int>).values.reduce(
+            (a, b) => a + b,
+          );
+          return Card(
+            margin: const EdgeInsets.only(bottom: 20),
+            elevation: 6,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
             ),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(12),
-              itemCount: chants.length,
-              itemBuilder: (context, i) {
-                final c = chants[i];
-                final isThisPlaying = _isPlaying && _currentPath == c["audio"];
-                return Card(
-                  clipBehavior: Clip.antiAlias,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  margin: const EdgeInsets.only(bottom: 12),
-                  color: c["color"].withOpacity(.1),
-                  child: Row(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  // الشعار + الاسم
+                  Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          c["logo"],
-                          width: 64,
-                          height: 64,
-                          errorBuilder: (_, __, ___) =>
-                              Icon(Icons.shield, size: 64, color: c["color"]),
-                        ),
+                      Image.asset(
+                        t["logo"],
+                        width: 100,
+                        height: 100,
+                        errorBuilder: (_, __, ___) =>
+                            Icon(Icons.shield, size: 100, color: t["color"]),
                       ),
+                      const SizedBox(width: 16),
                       Expanded(
-                        child: ListTile(
-                          title: Text(
-                            c["team"],
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: c["color"],
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              t["name"],
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: t["color"],
+                              ),
                             ),
-                          ),
-                          subtitle: Text(
-                            c["chant"],
-                            style: const TextStyle(fontSize: 15),
-                          ),
-                          trailing: IconButton(
-                            icon: Icon(
-                              isThisPlaying ? Icons.pause : Icons.volume_up,
-                              color: isThisPlaying ? Colors.red : null,
+                            Text(
+                              "«${t["nickName"]}»",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: t["color"].withOpacity(.8),
+                              ),
                             ),
-                            onPressed: () => isThisPlaying
-                                ? _stop()
-                                : _playChant(c["audio"]),
-                          ),
+                            const SizedBox(height: 4),
+                            Text(
+                              "مدينة: ${t["city"]}",
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                            Text(
+                              "تأسيس: ${t["founded"]}",
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                            Text(
+                              "الملعب: ${t["stadium"]}",
+                              style: const TextStyle(fontSize: 12),
+                            ),
+                            Text(
+                              "السعة: ${t["capacity"].toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')} متفرج",
+                              style: const TextStyle(fontSize: 12),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                );
-              },
+                  const Divider(height: 24),
+                  // البطولات
+                  Text(
+                    "الألقاب ($totalTitles)",
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ...t["titles"].entries.map(
+                    (e) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(e.key, style: const TextStyle(fontSize: 14)),
+                          Chip(
+                            label: Text(
+                              e.value.toString(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            backgroundColor: t["color"],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
