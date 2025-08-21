@@ -1,100 +1,126 @@
 // transport_page.dart
+import 'package:appyallavamos/CityTransportPage/CityTransportPage.dart';
+import 'package:appyallavamos/api_service/api_service.dart';
 import 'package:flutter/material.dart';
 
-class TransportPage extends StatelessWidget {
+class TransportPage extends StatefulWidget {
   const TransportPage({Key? key}) : super(key: key);
 
-  final List<Map<String, dynamic>> transports = const [
-    {
-      "type": "TGV",
-      "title": "القطار فائق السرعة",
-      "desc":
-          "يربط طنجة – الرباط – الدار البيضاء خلال أقل من ساعتين.\nحجز إلكتروني عبر تطبيق ONCF.",
-      "icon": Icons.train,
-      "color": Colors.blueAccent,
-    },
-    {
-      "type": "ONCF",
-      "title": "القطارات التقليدية",
-      "desc":
-          "شبكة واسعة تغطي معظم المدن (ما عدا أكادير والناظور).\nتطبيق ONCF Mobile للحجز والتتبع.",
-      "icon": Icons.directions_railway,
-      "color": Colors.green,
-    },
-    {
-      "type": "CTM",
-      "title": "حافلات CTM",
-      "desc":
-          "أسطول حديث مع تكييف وواي فاي.\nحجز إلكتروني عبر تطبيق CTM Mobile.",
-      "icon": Icons.directions_bus,
-      "color": Colors.amber,
-    },
-    {
-      "type": "Supratours",
-      "title": "حافلات Supratours",
-      "desc":
-          "تغطية شاملة مقارنة مع القطار.\nحجز مباشر عبر الموقع أو المحطات.",
-      "icon": Icons.airport_shuttle,
-      "color": Colors.orange,
-    },
-    {
-      "type": "Tramway",
-      "title": "الترامواي",
-      "desc":
-          "الرباط-سلا والدار البيضاء.\nتذكرة إلكترونية أو بطاقة التنقل.",
-      "icon": Icons.tram,
-      "color": Colors.red,
-    },
-    {
-      "type": "Taxi",
-      "title": "التاكسي الأخضر / الكبير",
-      "desc":
-          "تاكسي صغير داخل المدن، وكبير بين المدن.\nأسعار ثابتة أو تفاوضية.",
-      "icon": Icons.local_taxi,
-      "color": Colors.teal,
-    },
-  ];
+  @override
+  State<TransportPage> createState() => _TransportPageState();
+}
+
+class _TransportPageState extends State<TransportPage> {
+  late Future<List<String>> futureCities;
+
+  @override
+  void initState() {
+    super.initState();
+    futureCities = ApiService.getCities();
+  }
+
+  // 🎨 لوحة الألوان المغربية
+  final Color _primary = const Color(0xff006633);
+  final Color _accent = const Color(0xffFFD700);
+  final Color _surface = const Color(0xfff5f5f5);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _surface,
       appBar: AppBar(
-        title: const Text("🚌 وسائل النقل"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         centerTitle: true,
-        backgroundColor: const Color(0xff006633),
+        title: Text(
+          "🏆 مدن كأس إفريقيا",
+          style: TextStyle(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            color: _primary,
+          ),
+        ),
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(12),
-        itemCount: transports.length,
-        itemBuilder: (context, i) {
-          final t = transports[i];
-          return Card(
-            clipBehavior: Clip.antiAlias,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            elevation: 4,
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: t["color"],
-                child: Icon(t["icon"], color: Colors.white),
+      body: FutureBuilder<List<String>>(
+        future: futureCities,
+        builder: (_, snap) {
+          if (snap.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(color: _primary, strokeWidth: 3),
+            );
+          }
+          if (snap.hasError) {
+            return Center(
+              child: Text(
+                "⚠ خطأ: ${snap.error}",
+                style: TextStyle(color: Colors.red.shade700),
               ),
-              title: Text(
-                t["title"],
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+            );
+          }
+          final cities = snap.data!;
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.1,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
               ),
-              subtitle: Text(
-                t["desc"],
-                style: const TextStyle(fontSize: 13),
-              ),
-              contentPadding: const EdgeInsets.all(12),
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text("💡 معلومات عن ${t["type"]} – قريباً"),
+              itemCount: cities.length,
+              itemBuilder: (_, i) {
+                final city = cities[i];
+                return GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) =>
+                          CityTransportPage(city: city),
+                      transitionsBuilder: (_, anim, __, child) =>
+                          FadeTransition(opacity: anim, child: child),
+                    ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: _surface,
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withOpacity(.8),
+                          offset: const Offset(-6, -6),
+                          blurRadius: 12,
+                        ),
+                        BoxShadow(
+                          color: Colors.black.withOpacity(.1),
+                          offset: const Offset(6, 6),
+                          blurRadius: 12,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.location_city, size: 42, color: _primary),
+                        const SizedBox(height: 8),
+                        Text(
+                          city,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: _primary,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Container(
+                          width: 40,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: _accent,
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

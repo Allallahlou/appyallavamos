@@ -35,7 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   cached_network_image: ^3.4.1
-  http: ^1.4.0
+  http: ^1.5.0
   smooth_page_indicator: ^1.2.1
   lottie: ^3.3.1
   audioplayers: ^6.5.0
@@ -44,6 +44,9 @@ dependencies:
   url_launcher: ^6.3.2
   easy_sidemenu: ^0.7.1
   flex_color_scheme: ^8.2.0
+  google_sign_in: ^7.1.1
+  flutter_facebook_auth: ^7.1.2
+  supabase_flutter: ^2.9.1
 
 dev_dependencies:
   flutter_test:
